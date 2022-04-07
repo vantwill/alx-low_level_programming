@@ -1,4 +1,3 @@
-#!/bin/bash
 #include <stdio.h>
 /*
 *Return: 0after printing

@@ -7,9 +7,9 @@
  *Retun: Always 0 (Success)
 */
 
-in main(void)
+int main(void)
 {
-  int n,
+  int n;
   
   srand(time(0));
   n = rand() - RAND_MAX / 2;
@@ -22,7 +22,7 @@ in main(void)
   }
   else if ((n % 10) > 5)
   {
-   printf(greater than 5\n");
+   printf("greater than 5\n");
   }
   else
   {

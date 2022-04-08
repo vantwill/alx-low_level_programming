@@ -1,18 +1,18 @@
 #include <stdio.h>
 
 /**
- *main -print lowercase a-z
+ *main - print 0123456789
  *Return: Always 0 (Success)
  */
 
 int main(void)
 {
-char alpha = 'a';
+int n = 0;
 
-while (alpha <= 'z')
+while (n < 10)
 {
-putchar(alpha);
-alpha++;
+printf("%i", n);
+n++;
 }
 putchar('\n');
 

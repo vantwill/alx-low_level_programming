@@ -11,6 +11,7 @@ int main(void)
 	int ones;
 	int t;
 	int o;
+	
 	for (tens = '0'; tens <= '9'; tens++) /*print first two digit combo*/
 	{
 		for (ones = '0'; ones <= '9'; ones++)
@@ -24,6 +25,7 @@ int main(void)
 					putchar(' ');
 					putchar(t);
 					putchar(o);
+					
 					if (!((tens == '9' && ones == '8') &&
 					      (t == '9' && o == '9')))
 					{
@@ -33,10 +35,9 @@ int main(void)
 				}
 			o = '0';
 		}
-
 		}
 	}
 	putchar('\n');
+	
 	return (0);
-
 }

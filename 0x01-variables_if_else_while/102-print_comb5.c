@@ -11,6 +11,7 @@ int main(void)
 	int ones;
 	int t;
 	int o;
+	
 	for (tens = '0'; tens <= '9'; tens++) /*print first two digit combo*/
 	{
 		for (ones = '0'; ones <= '9'; ones++)

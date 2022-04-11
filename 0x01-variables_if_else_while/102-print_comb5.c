@@ -6,10 +6,10 @@
  */
 int main(void)
 {
-  int tens;
-  int ones;
-  int t;
-  int o;
+int tens;
+int ones;
+int t;
+int o;
   
   for (tens = '0'; tens <= '9'; tens++) /*print first two didit comb*/
   {

@@ -6,11 +6,11 @@
  *
  * Return: 0 on success
  */
-
 int main(void)
 {
 	int i;
 	int sum = 0;
+
 	for (i = 0; i < 1024; i += 3)
 		sum += i;
 	for (i = 0; i < 1024; i += 5)

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * _printstr - prints a given string
@@ -24,7 +24,7 @@ int _printstr(char c[])
  *
  * Return void
  */
-void times_table(int n);
+void print_times_table(int n)
 {
 	char buffer[5] = ",    ";
 	int i, j, num;

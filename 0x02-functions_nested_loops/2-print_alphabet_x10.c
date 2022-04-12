@@ -1,17 +1,27 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
- * print_alphabet_x10 - a simple program that outputs the alphabet 10 times
- * followed by a newline
+ * print_alphabet_x10 - print alphabet
  *
- * Return: 0 on success
+ * Return: Always 0.
  */
-
 void print_alphabet_x10(void)
 {
-	int i, j;
-	char str[] = "abcdefghijklmnopqrstuvwxyz\n";
-	for (i = 0; i < 10; i++)
-		for (j = 0; str[j] != '\0'; j++)
-			_putchar(str[j]);
+int alphabet;
+int count;
+
+
+count = 0;
+while (count < 10)
+{
+for (alphabet = 'a' ; alphabet <= 'z'; alphabet++)
+{
+_putchar(alphabet);
+}
+
+count++;
+_putchar('\n');
+}
+
+
 }

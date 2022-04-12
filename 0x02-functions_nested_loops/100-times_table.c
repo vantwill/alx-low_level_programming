@@ -24,7 +24,7 @@ int _printstr(char c[])
  *
  * Return void
  */
-void print_times_table(int n)
+void times_table(int n);
 {
 	char buffer[5] = ",    ";
 	int i, j, num;

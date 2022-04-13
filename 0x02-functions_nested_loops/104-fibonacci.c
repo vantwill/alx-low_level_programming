@@ -1,101 +1,50 @@
 #include <stdio.h>
 
-
-
-#define MAXULI9 10000000000
-
-
-
 /**
-
- * main - prints the first 100 Fibonacci numbers, starting with 1 and 2,
-
- * followed by a new line, without using long long, arrays or dynamic
-
- * allocation
-
- *
-
- * Return: 0 on success
-
+ * main - print first 98 Fibonacci numbers without using long long, malloc,
+ * pointers, array/tables, or structures
+ * Return: 0
  */
 
 int main(void)
-
 {
+	int counter, overflow;
+	unsigned long a = 1;
+	unsigned long b = 1;
+	unsigned long sum = 0;
+	long a_head, a_tail, b_head, b_tail, sum_head, sum_tail;
 
-	int i;
+	printf("1");
 
-	unsigned long onebeforefirst = 0, onebeforesecond = 0;
-
-	unsigned long twobeforefirst = 0, twobeforesecond = 0;
-
-	unsigned long currentfirst = 0, currentsecond = 0;
-
-
-
-	onebeforesecond = 2;
-
-	twobeforesecond = 1;
-
-	currentsecond = onebeforesecond + twobeforesecond;
-
-
-
-	printf("%lu", twobeforesecond);
-
-	printf(", %lu", onebeforesecond);
-
-	printf(", %lu", currentsecond);
-
-
-
-	for (i = 3; i < 98; i++)
-
+	for (counter = 2; counter < 93; counter++) /* will still print */
 	{
-
-		twobeforefirst = onebeforefirst;
-
-		twobeforesecond = onebeforesecond;
-
-
-
-		onebeforefirst = currentfirst;
-
-		onebeforesecond = currentsecond;
-
-
-
-		currentfirst = twobeforefirst + onebeforefirst;
-
-		currentsecond = twobeforesecond + onebeforesecond;
-
-
-
-		if (currentsecond >= MAXULI9)
-
-		{
-
-			currentfirst++;
-
-			currentsecond -= MAXULI9;
-
-		}
-
-
-
-		if (currentfirst != 0)
-
-			printf(", %lu%010lu", currentfirst, currentsecond);
-
-		else
-
-			printf(", %lu", currentsecond);
-
+		sum = a + b;
+		a = b;
+		b = sum;
+		printf(", %lu", sum);
 	}
+
+	a_head = a / 1000000000; /* break larger num into 2 parts */
+	a_tail = a % 1000000000;
+	b_head = b / 1000000000;
+	b_tail = b % 1000000000;
+
+	for (; counter < 99; counter++)
+	{
+		overflow = (a_tail + b_tail) / 1000000000;
+		sum_tail = (a_tail + b_tail) - (1000000000 * overflow);
+		sum_head = (a_head + b_head) + overflow;
+
+		printf(", %lu%lu", sum_head, sum_tail);
+
+		a_head = b_head;
+		a_tail = b_tail;
+		b_head = sum_head;
+		b_tail = sum_tail;
+	}
+
 
 	printf("\n");
 
 	return (0);
-
 }

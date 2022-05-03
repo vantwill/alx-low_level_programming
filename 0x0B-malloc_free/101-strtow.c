@@ -1,87 +1,84 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
- * number - function to calculate number of words
- * @str: string being passed to check for words
+ * _wcount - counts number of words
+ * @sw: string
  *
- * Return: number of words
+ * Return: int
  */
-int number(char *str)
+int _wcount(char *sw)
 {
-	int a, num = 0;
+	int l, wc;
 
-	for (a = 0; str[a] != '\0'; a++)
+	l = 0, wc = 0;
+	if (*(sw + l) == ' ')
+		l++;
+	while (*(sw + l))
 	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			for (; str[a] != ' ' && str[a] != '\0'; a++)
-				str++;
-			num++;
-		}
+		if (*(sw + l) == ' ' && *(sw + l - 1) != ' ')
+			wc++;
+		if (*(sw + l) != ' '  && *(sw + l + 1) == 0)
+			wc++;
+		l++;
 	}
-	return (num);
+	return (wc);
 }
 /**
- * free_everything - frees the memory
- * @string: pointer values being passed for freeing
- * @i: counter
+ * _trspace - Moves adress to remove trailig whitespaces
+ * @st: string
+ *
+ * Return: Pointer
  */
-void free_everything(char **string, int i)
+char *_trspace(char *st)
 {
-	for (; i > 0;)
-		free(string[--i]);
-	free(string);
+	while (*st == ' ')
+		st++;
+	return (st);
 }
-
 /**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
+ * strtow - splits a string into words
+ * @str: string
+ *
+ * Return: Double Pointer
  */
 char **strtow(char *str)
 {
-	int total_words = 0, b = 0, c = 0, length = 0;
-	char **words, *found_word;
+	char **s, *ts;
+	int l, l2, wc, i, j, fr, k;
 
-	if (str == 0 || *str == 0)
-		return (NULL);
-	total_words = number(str);
-	if (total_words == 0)
-		return (NULL);
-	words = malloc((total_words + 1) * sizeof(char *));
-	if (words == 0)
-		return (NULL);
-	for (; *str != '\0' &&  b < total_words;)
+	if (str == NULL || *str == 0)
+		return (0);
+	fr = 0;
+	wc = _wcount(str);
+	if (wc == 0)
+		return (0);
+	s = malloc((wc + 1) * sizeof(char *));
+	if (s == 0)
+		return (0);
+	ts = _trspace(str);
+	for (i = 0; i < wc; i++)
 	{
-		if (*str == ' ')
-			str++;
-		else
+		l = 0;
+		while (*(ts + l) != ' ' && *(ts + l) != 0)
+			l++;
+		s[i] = malloc((l + 1) * sizeof(char));
+		if (s[i] == 0)
 		{
-			found_word = str;
-			for (; *str != ' ' && *str != '\0';)
-			{
-				length++;
-				str++;
-			}
-			words[b] = malloc((length + 1) * sizeof(char));
-			if (words[b] == 0)
-			{
-				free_everything(words, b);
-				return (NULL);
-			}
-			while (*found_word != ' ' && *found_word != '\0')
-			{
-				words[b][c] = *found_word;
-				found_word++;
-				c++;
-			}
-			words[b][c] = '\0';
-			b++; c = 0; length = 0; str++;
+			fr = 1;
+			break;
 		}
+		for (j = 0, l2 = 0; l2 < l; l2++, j++)
+			s[i][j] = *(ts + l2);
+		s[i][j] = '\0';
+		ts = _trspace(ts + l);
 	}
-	return (words);
+	s[i] = NULL;
+	if (fr == 1)
+	{
+		for (k = 0; k <= i; k++)
+			free(s[k]);
+		free(s);
+	}
+	return (s);
 }

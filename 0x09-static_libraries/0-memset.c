@@ -8,7 +8,7 @@
  *
  * @b: Value that is to fill up memory area @s
  *
- * @n: number of bytes of memory area @s to be filled with @b
+ * @n: number of bytes of memory area @s to be filled wixxth @b
  *
  * Return: Pointer to the memory area @s
  */

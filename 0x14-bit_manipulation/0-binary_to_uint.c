@@ -16,18 +16,24 @@
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int num = 0, mult = 1;
-	int con;
+	int conv;
+
 	if (b == '\0')
 		return (0);
-	for (con = 0; b[con];)
-		len++;
-	for (con -= 1; con >= 0; con--)
+
+	for (conv = 0; b[conv];)
+		conv++;
+
+	for (conv -= 1; conv >= 0; conv--)
 	{
-		if (b[con] != '0' && b[con] != '1')
+		if (b[conv] != '0' && b[conv] != '1')
 			return (0);
-		num += (b[con] - '0') * mult;
+
+		num += (b[conv] - '0') * mult;
 		mult *= 2;
 	}
+
 	return (num);
+
 }
 

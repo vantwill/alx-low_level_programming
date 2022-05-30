@@ -84,15 +84,12 @@ void print_class(unsigned char *e_ident)
 	case ELFCLASSNONE:
 		printf("none\n");
 		break;
-
 	case ELFCLASS32:
 		printf("ELF32\n");
 		break;
-
 	case ELFCLASS64:
 		printf("ELF64\n");
 		break;
-
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
@@ -109,15 +106,12 @@ void print_data(unsigned char *e_ident)
 
 	switch (e_ident[EI_DATA])
 	{
-
 	case ELFDATANONE:
 		printf("none\n");
 		break;
-
 	case ELFDATA2LSB:
 		printf("2's complement, little endian\n");
 		break;
-
 	case ELFDATA2MSB:
 		printf("2's complement, big endian\n");
 		break;
@@ -141,7 +135,6 @@ void print_version(unsigned char *e_ident)
 	case EV_CURRENT:
 		printf(" (current)\n");
 		break;
-
 	default:
 		printf("\n");
 		break;
@@ -156,8 +149,8 @@ void print_version(unsigned char *e_ident)
 void print_osabi(unsigned char *e_ident)
 {
 	printf("  OS/ABI:                            ");
-	switch (e_ident[EI_OSABI])
 
+	switch (e_ident[EI_OSABI])
 	{
 	case ELFOSABI_NONE:
 		printf("UNIX - System V\n");
@@ -168,7 +161,6 @@ void print_osabi(unsigned char *e_ident)
 	case ELFOSABI_NETBSD:
 		printf("UNIX - NetBSD\n");
 		break;
-
 	case ELFOSABI_LINUX:
 		printf("UNIX - Linux\n");
 		break;
@@ -216,10 +208,11 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 		e_type >>= 8;
 
 	printf("  Type:                              ");
+
 	switch (e_type)
 	{
 	case ET_NONE:
-	printf("NONE (None)\n");
+	        printf("NONE (None)\n");
 		break;
 	case ET_REL:
 		printf("REL (Relocatable file)\n");
@@ -298,21 +291,17 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
 	{
-
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
-
 	}
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-
 		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 
 	}
-
 	r = read(o, header, sizeof(Elf64_Ehdr));
 	if (r == -1)
 	{
@@ -335,9 +324,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	free(header);
 	close_elf(o);
-
 	return (0);
-
 }
 
 

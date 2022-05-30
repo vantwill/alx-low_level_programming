@@ -32,7 +32,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	fread = read(o, buffer, letters);
 	fwrite = write(STDOUT_FILENO, buffer, r);
 
-	if (o == -1 || r == -1 || w == -1 || w != r)
+	if (file == -1 || fread == -1 || fwrite == -1 || w != r)
 	{
 		free(buffer);
 		return (0);

@@ -11,6 +11,7 @@
 int binary_search(int *array, size_t size, int value)
 {
 	size_t j, k, m, r;
+	
 	k = 0;
 	r = size - 1;
 	if (!array)

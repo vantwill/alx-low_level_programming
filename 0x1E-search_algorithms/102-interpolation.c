@@ -3,14 +3,16 @@
 /**
  * interpolation_search - searches for a value in an array of
  * integers using the Interpolation search algorithm
+ *
  * @array: input array
+ * @size: size of the array
  * @value: value to search in
  * Return: index of the number
  */
 int interpolation_search(int *array, size_t size, int value)
 {
 	size_t pos, low, high;
-	double position;
+	double j;
 
 	if (array == NULL)
 		return (-1);
@@ -20,8 +22,8 @@ int interpolation_search(int *array, size_t size, int value)
 
 	while (size)
 	{
-		position = (double)(high - low) / (array[high] - array[low]) * (value - array[low]);
-		pos = (size_t)(low + position);
+		j = (double)(high - low) / (array[high] - array[low]) * (value - array[low]);
+		pos = (size_t)(low + j);
 		printf("Value checked array[%d]", (int)pos);
 
 		if (pos >= size)
@@ -33,6 +35,7 @@ int interpolation_search(int *array, size_t size, int value)
 		{
 			printf(" = [%d]\n", array[pos]);
 		}
+
 		if (array[pos] == value)
 			return ((int)pos);
 
